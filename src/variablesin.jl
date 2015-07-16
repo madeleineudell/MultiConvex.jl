@@ -35,3 +35,8 @@ function outerproduct{T}(s::Set{T}, t::Set{T})
   end
   return results
 end
+
+
+
+
+
