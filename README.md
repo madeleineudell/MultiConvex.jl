@@ -5,10 +5,10 @@
 **MultiConvex.jl** is a [Julia](http://julialang.org) package for [Disciplined Multiconvex Programming](doc/multiconvex_slides.pdf). MultiConvex.jl can detect and (heuristically) solve multiconvex problems using alternating minimization. It solves the subproblems it encounters using [Convex.jl](https://github.com/JuliaOpt/Convex.jl) and so can use any solver supported by Convex.jl, including [Mosek](https://github.com/JuliaOpt/Mosek.jl), [Gurobi](https://github.com/JuliaOpt/gurobi.jl), [ECOS](https://github.com/JuliaOpt/ECOS.jl), [SCS](https://github.com/JuliaOpt/SCS.jl), [GLPK](https://github.com/JuliaOpt/GLPK.jl), through the [MathProgBase](http://mathprogbasejl.readthedocs.org/en/latest/) interface.
 
 **Installation**: 
-Clone the MultiConvex and Convex repositories. (Note: MultiConvex does not currently work with the version of Convex tagged in METADATA.)
+Clone the MultiConvex repository, and install Convex.
 ```julia
 julia> Pkg.clone("https://github.com/madeleineudell/MultiConvex.jl.git")
-julia> Pkg.clone("https://github.com/madeleineudell/Convex.jl.git")
+julia> Pkg.add("Convex")
 ```
 
 - If you're running into **bugs or have feature requests**, please use the [Github Issue Tracker](https://github.com/madeleineudell/MultiConvex.jl/issues>).
