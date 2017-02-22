@@ -4,13 +4,13 @@ import Convex
 export altmin!
 
 function altmin!(problem::Problem,
-                s::SolverOrModel=get_default_solver();
+                s::MathProgBase.AbstractMathProgSolver=get_default_solver();
                 warmstart=true, maxAMiters=5)
 
   obj_vex, stablesets, vars = multivexity(problem)
 
   # initialize
-  # TODO 
+  # TODO
   #   1) make sure initial values are feasible
   for v in vars
     if v.value == nothing || !warmstart
@@ -30,13 +30,13 @@ function altmin!(problem::Problem,
         Convex.solve!(problem, warmstart=true)
       else
         Convex.solve!(problem, warmstart=false)
-        solved_subproblem = true        
+        solved_subproblem = true
       end
       # now that we've found their values, fix them again
       for v in s
         fix!(v)
-      end     
+      end
     end
-  end 
+  end
   return problem
 end

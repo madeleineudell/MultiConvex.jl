@@ -4,10 +4,13 @@
 
 **MultiConvex.jl** is a [Julia](http://julialang.org) package for [disciplined multi-convex programming](https://arxiv.org/abs/1609.03285). MultiConvex.jl can detect and (heuristically) solve multi-convex problems using alternating minimization. It solves the subproblems it encounters using [Convex.jl](https://github.com/JuliaOpt/Convex.jl) and so can use any solver supported by Convex.jl, including [Mosek](https://github.com/JuliaOpt/Mosek.jl), [Gurobi](https://github.com/JuliaOpt/gurobi.jl), [ECOS](https://github.com/JuliaOpt/ECOS.jl), [SCS](https://github.com/JuliaOpt/SCS.jl), [GLPK](https://github.com/JuliaOpt/GLPK.jl), through the [MathProgBase](http://mathprogbasejl.readthedocs.org/en/latest/) interface.
 
-We have also released a [CVXPY extension for multi-convex programming in Python](https://github.com/cvxgrp/dmcp).
+More resources:
+* our [paper on disciplined multi-convex programming](https://arxiv.org/abs/1609.03285)
+* [slides on disciplined multi-convex programming](doc/multiconvex_slides.pdf)
+* a [CVXPY extension for multi-convex programming in Python](https://github.com/cvxgrp/dmcp).
 
 **Installation**:
-Install the MultiConvex and Convex repositories.
+Clone the MultiConvex repository, and install Convex.
 ```julia
 julia> Pkg.clone("https://github.com/madeleineudell/MultiConvex.jl.git")
 julia> Pkg.add("Convex")

@@ -9,14 +9,14 @@ function isstableset{T}(S::Set{T}, E::Set{@compat Tuple{T,T}})
   return true
 end
 
-function stablepartition!{T}(conflicts::Set{@compat Tuple{T, T}}, 
+function stablepartition!{T}(conflicts::Set{@compat Tuple{T, T}},
                              stablesets::Array{Set{T}, 1} = Set{T}[])
 
   # elements already in stablesets are already taken care of
   prepartitioned = union(stablesets...)
 
   # convert the set of conflicts into a dictionary
-  # mapping each id to the ids of its neighbors in the graph 
+  # mapping each id to the ids of its neighbors in the graph
   id2neighborid = Dict{T, Set{T}}() # map from variable id to neighbor ids
   for e in conflicts
     for i in 1:2
@@ -26,7 +26,7 @@ function stablepartition!{T}(conflicts::Set{@compat Tuple{T, T}},
         continue
       elseif !(v in keys(id2neighborid))
         # initialize v and add neighbor n
-        id2neighborid[v] = Set{T}({n})
+        id2neighborid[v] = Set{T}([n])
       else
         # just add neighbor n
         union!(id2neighborid[v], n)
@@ -46,7 +46,7 @@ end
 # id2neighborhoodid maps node ids to the list of the node's neighbors in the graph
 # returns a list of stable sets in the graph whose union is the full set of nodes
 # uses a greedy algorithm
-function stablepartition!{T}(id2neighborid::Dict{T, Set{T}}, 
+function stablepartition!{T}(id2neighborid::Dict{T, Set{T}},
                              stablesets::Array{Set{T}, 1} = Set{T}[])
   for varid in keys(id2neighborid)
     foundhome = false
@@ -61,7 +61,7 @@ function stablepartition!{T}(id2neighborid::Dict{T, Set{T}},
     end
     if !foundhome
       # var conflicts with all previous subsets, so make a new subset
-      push!(stablesets, Set{T}({varid}))
+      push!(stablesets, Set{T}([varid]))
     end
   end
   return stablesets
